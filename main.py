@@ -1,5 +1,6 @@
 import os
-import logging 
+import logging
+import Modules.BL_common as bl
 
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -19,10 +20,20 @@ async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
 
 
+@dp.message_handler()
+async def other_command(message: types.Message):
+    try:
+        print(message)
+        bl.parsingMessage(message)
+    except Exception as e:
+        print(e)
+
+
+
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
 
 
 
-print("Hello team")
+print("Bot finish")
 

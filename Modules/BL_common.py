@@ -6,10 +6,7 @@ from aiogram import types
 def parsingMessage(message: types.Message):
     text = message.text
     userId = message.from_user
-    userName = validateUserAccess(userId)
-    await message.reply(userName + ", your exercise is great! Wait a sec...")
     addExerciseToSteck(text = text, userId = userId)
-    await message.reply(userName + ", all is ok! I add it to your stack.")
     return 0
 
 

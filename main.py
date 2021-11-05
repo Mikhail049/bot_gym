@@ -24,9 +24,12 @@ async def send_welcome(message: types.Message):
 async def other_command(message: types.Message):
     try:
         print(message)
+        await message.reply(message.from_user + ", your exercise is great! Wait a sec...")
         bl.parsingMessage(message)
+        await message.reply(message.from_user + ", all is ok! I add it to your stack.")
     except Exception as e:
         print(e)
+        await message.reply(message.from_user + ", something is going wrong...")
 
 
 if __name__ == '__main__':

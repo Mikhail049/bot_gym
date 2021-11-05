@@ -14,8 +14,8 @@ connectionParameters = {
 
 def connectionToDb():
     pprint.pprint("Start connectionToDb")
-    pprint.pprint(**connectionParameters)
-    return mysql.connector.connect(connectionParameters)
+    pprint.pprint(connectionParameters)
+    return mysql.connector.connect(**connectionParameters)
 
 
 def getNameExcercise(exerciseName):

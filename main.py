@@ -1,6 +1,7 @@
 import os
 import logging
 import Modules.BL_common as bl
+import pprint
 
 from aiogram import Bot, Dispatcher, executor, types
 
@@ -28,7 +29,7 @@ async def other_command(message: types.Message):
         bl.parsingMessage(message)
         await message.reply(str(message.from_user.full_name) + ", all is ok! I add it to your stack.")
     except Exception as e:
-        print(e)
+        pprint.pprint(e)
         await message.reply(str(message.from_user.full_name) + ", something is going wrong...")
 
 

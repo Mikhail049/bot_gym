@@ -12,6 +12,7 @@ connectionParameters = {
 }
 
 def connectionToDb():
+    pprint.pprint("Start connectionToDb")
     return mysql.connector.connect(connectionParameters)
 
 
@@ -27,6 +28,7 @@ def getNameExcercise(exerciseName):
     return result
 
 def getUser(userID) -> str:
+    pprint.pprint("Start getUser")
     commandString = 'SELECT user_name FROM dt_main_data_about_users WHERE id= %s'
     data : tuple = (str(userID),)
     cnx = connectionToDb()
@@ -40,6 +42,7 @@ def getUser(userID) -> str:
         return ''
 
 def addExerciseToStack(user, exercise, reps = None, minutes = None, weight = None):
+    pprint.pprint("Start addExerciseToStack")
     commandS = "INSERT INTO dt_exercises_steck (user, exercise, date, reps, minutes, weight) " \
                "VALUE(%s, %s, %s, %s, %s, %s);"
     data = (user, exercise, datetime.now(), reps, minutes, weight)
@@ -49,15 +52,3 @@ def addExerciseToStack(user, exercise, reps = None, minutes = None, weight = Non
     cnx.commit()
     cnx.close()
 
-
-
-
-def addUserToDB():
-    commandString = 'Select * From dt_mapping_exercises'
-    cnx = connectionToDb()
-    cursor = cnx.cursor()
-    cursor.execute(commandString)
-    result = cursor.fetchall()
-    cnx.close()
-
-    pprint.pprint(result)

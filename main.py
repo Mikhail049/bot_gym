@@ -29,7 +29,7 @@ async def other_command(message: types.Message):
         bl.parsingMessage(message)
         await message.reply(str(message.from_user.full_name) + ", all is ok! I add it to your stack.")
     except Exception as e:
-        pprint.pprint(e.__traceback__)
+        pprint.pprint(e)
         await message.reply(str(message.from_user.full_name) + ", something is going wrong...")
 
 

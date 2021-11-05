@@ -13,6 +13,7 @@ connectionParameters = {
 
 def connectionToDb():
     pprint.pprint("Start connectionToDb")
+    pprint.pprint(connectionParameters)
     return mysql.connector.connect(connectionParameters)
 
 
@@ -47,8 +48,10 @@ def addExerciseToStack(user, exercise, reps = None, minutes = None, weight = Non
                "VALUE(%s, %s, %s, %s, %s, %s);"
     data = (user, exercise, datetime.now(), reps, minutes, weight)
     cnx = connectionToDb()
+    pprint.pprint("connection is here")
     cursor = cnx.cursor(prepared=True)
     cursor.execute(commandS, data)
+    pprint.pprint("commit to db")
     cnx.commit()
     cnx.close()
 

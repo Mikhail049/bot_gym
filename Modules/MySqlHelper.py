@@ -11,9 +11,10 @@ connectionParameters = {
     'database': os.getenv("DB_NAME_MYGYM")
 }
 
+
 def connectionToDb():
     pprint.pprint("Start connectionToDb")
-    pprint.pprint(connectionParameters)
+    pprint.pprint(**connectionParameters)
     return mysql.connector.connect(connectionParameters)
 
 

@@ -1,21 +1,27 @@
 import Modules.MySqlHelper as msql
+import pprint
 
 from aiogram import types
 
-async def parsingMessage(message: types.Message):
+def parsingMessage(message: types.Message):
     text = message.text
     userId = message.from_user
-    validateExerciseName(text)
+    userName = validateUserAccess(userId)
+    await message.reply(userName + ", your exercise is great! Wait a sec...")
+    addExerciseToSteck(text = text, userId = userId)
+    await message.reply(userName + ", all is ok! I add it to your stack.")
     return 0
 
 
-async def validateExerciseName(exerciseName):
+def validateExerciseName(exerciseName):
     msql.getNameExcercise(exerciseName)
     return 0
 
-async def addExerciseToSteck():
-
+def addExerciseToSteck(text : str, userId):
+    arrSplitedText = text.split(".", maxsplit=3)
+    if len(arrSplitedText) >= 2:
+        msql.addExerciseToStack(user = userId, exercise= arrSplitedText[0].strip(), reps = arrSplitedText[1].strip())
     return 0
 
-async def validateUserAccess(UserID):
-    return 0
+def validateUserAccess(userID):
+    return msql.getUser(userID)

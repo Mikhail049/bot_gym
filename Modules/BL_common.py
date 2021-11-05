@@ -5,8 +5,7 @@ from aiogram import types
 
 def parsingMessage(message: types.Message):
     text = message.text
-    userId = message.from_user
-    addExerciseToSteck(text = text, userId = userId)
+    addExerciseToSteck(text = text, userId = 6666666)
     return 0
 
 
